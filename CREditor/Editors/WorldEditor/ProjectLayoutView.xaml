@@ -13,8 +13,8 @@
             <RowDefinition Height="32"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Button Content="Afegir Esnea" Width="96" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20,0,0,0" Focusable="False" Grid.Row="0" 
-                AutomationProperties.Name="Afegeix una noca escana" Click="OnAddScene_Button_Click"/>
+        <Button Content="Afegir Escena" Width="96" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20,0,0,0" Focusable="False" Grid.Row="0" 
+                AutomationProperties.Name="Afegeix una noca escena" Command="{Binding AddScene}"/>
         <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="auto">
             <ItemsControl ItemsSource="{Binding Scenes}">
                 <ItemsControl.ItemsPanel>
@@ -27,7 +27,12 @@
                         <Expander IsExpanded="{Binding IsActive, Mode=OneWay}">
                             <Expander.Header>
                                 <Grid>
-                                    <TextBlock Text="{Binding Name}"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding Name}"/>
+                                        <Button Content="Desfer" Command="{Binding DataContext.RemoveScene, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                CommandParameter="{Binding}" Margin="20,0" Focusable="False"/>
+                                    </StackPanel>
+                                    
                                 </Grid>
                             </Expander.Header>
                             <Border Background="Blue" Height="100"/>

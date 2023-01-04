@@ -5,7 +5,7 @@ using System.Windows.Input;
 
 namespace CREditor
 {
-    /*class RelayCommand<T> : ICommand
+    class RelayCommand<T> : ICommand
     {
         private readonly Action<T> _execute;
         private readonly Predicate<T> _canExecute;
@@ -23,7 +23,7 @@ namespace CREditor
 
         public void Execute(object parameter)
         {
-            Execute((T)parameter);
+            _execute((T)parameter);
         }
 
         public RelayCommand(Action<T> execute, Predicate<T> canExecute = null)
@@ -31,5 +31,5 @@ namespace CREditor
             _execute = execute ?? throw new ArgumentNullException(nameof(execute));
             _canExecute = canExecute;
         }
-    }*/
+    }
 }

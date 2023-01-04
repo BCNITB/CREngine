@@ -40,10 +40,10 @@ namespace CREditor.Utilities
 
     public class UndoRedo
     {
-        private readonly ObservableCollection<UndoRedo> _redoList = new ObservableCollection<UndoRedo>();
-        private readonly ObservableCollection<UndoRedo> _undoList = new ObservableCollection<UndoRedo>();
-        public ReadOnlyObservableCollection<UndoRedo> RedoList { get; }
-        public ReadOnlyObservableCollection<UndoRedo> UndoList { get; }
+        private readonly ObservableCollection<IUndoRedo> _redoList = new ObservableCollection<IUndoRedo>();
+        private readonly ObservableCollection<IUndoRedo> _undoList = new ObservableCollection<IUndoRedo>();
+        public ReadOnlyObservableCollection<IUndoRedo> RedoList { get; }
+        public ReadOnlyObservableCollection<IUndoRedo> UndoList { get; }
 
         public void Reset()
         {
@@ -51,13 +51,13 @@ namespace CREditor.Utilities
             _undoList.Clear();
         }
 
-        public void Add(UndoRedo cmd)
+        public void Add(IUndoRedo cmd)
         {
             _undoList.Add(cmd);
             _redoList.Clear();
         }
 
-        /*public void Undo()
+        public void Undo()
         {
             if(_undoList.Any())
             {
@@ -73,7 +73,7 @@ namespace CREditor.Utilities
             if(_redoList.Any())
             {
                 var cmd = _redoList.First();
-                _redoList.Remove(0);
+                _redoList.RemoveAt(0);
                 cmd.Redo();
                 _undoList.Add(cmd);
             }
@@ -81,8 +81,8 @@ namespace CREditor.Utilities
 
         public UndoRedo()
         {
-            RedoList = new ReadOnlyObservableCollection<UndoRedo>(_redoList);
-            UndoList = new ReadOnlyObservableCollection<UndoRedo>(_undoList);
-        }*/
+            RedoList = new ReadOnlyObservableCollection<IUndoRedo>(_redoList);
+            UndoList = new ReadOnlyObservableCollection<IUndoRedo>(_undoList);
+        }
     }
 }

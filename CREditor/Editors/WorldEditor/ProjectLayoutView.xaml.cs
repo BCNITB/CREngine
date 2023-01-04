@@ -14,10 +14,10 @@ namespace CREditor.Editors
             InitializeComponent();
         }
 
-        private void OnAddScene_Button_Click(object sender, RoutedEventArgs e)
+        /*private void OnAddScene_Button_Click(object sender, RoutedEventArgs e)
         {
             var vm = DataContext as Project;
             vm.AddScene("Nova Escena " + vm.Scenes.Count);
-        }
+        }*/
     }
 }
