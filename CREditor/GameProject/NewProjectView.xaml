@@ -5,24 +5,44 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CREditor.GameProject"
              mc:Ignorable="d" Width="800"
+             d:DataContext="{d:DesignInstance Type=local:NewProject, IsDesignTimeCreatable=True}"
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <local:NewProject/>
+    </UserControl.DataContext>
     <StackPanel Background="white">
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-            <ListBox Width="195" Height="250"/>
-            <Border Width="400" Height="250" Margin="5,0,0,0"/>
+            <ListBox Width="195" Height="250" ItemsSource="{Binding ProjectTemplates}" x:Name="templateListBox" 
+                     SelectedIndex="0" AutomationProperties.Name="Tria una plantilla amb fletxa amunt i avall">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="{Binding Icon}" Margin="0,0,5,0"/>
+                            <TextBlock Text="{Binding ProjectType}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <Border Width="400" Height="250" Margin="5,0,0,0">
+                <Border.Background>
+                    <ImageBrush ImageSource="{Binding Path=SelectedItem.Screenshot, ElementName=templateListBox}"/>
+                </Border.Background>
+            </Border>
         </StackPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,30,0,0">
             <TextBlock Text="Nom" Width="50"/>
-            <TextBox Width="550"/>
+            <TextBox Width="550" Text="{Binding ProjectName, UpdateSourceTrigger=PropertyChanged}"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,0,0">
             <TextBlock Text="Ruta" Width="50"/>
-            <TextBox Width="500"/>
-            <Button Content="Buscar" Width="45" Margin="5,0,0,0"/>
+            <TextBox Width="500" Text="{Binding ProjectPath, UpdateSourceTrigger=PropertyChanged}"/>
+            <Button Content="Buscar" Width="45" Margin="5,0,0,0" AutomationProperties.Name="Buscar en el equipo"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,30,0,0">
-            <Button Content="Crear" Width="96" IsDefault="True"/>
-            <Button Content="Sortir" Width="96" Margin="30,0,0,0 " IsCancel="True"/>
+            <Button AutomationProperties.Name="Crear un nou porjecte" Content="Crear" Width="96" IsDefault="True" IsEnabled="{Binding IsValid}"
+                    Click="OnCreate_Button_Click"/>
+            <Button AutomationProperties.Name="Sortir del programa" Content="Sortir" Width="96" Margin="30,0,0,0 " IsCancel="True"/>
         </StackPanel>
+        <TextBlock Text="{Binding ErrorMsg}" Margin="0,20,0,0" HorizontalAlignment="Center"/>
     </StackPanel>
 </UserControl>

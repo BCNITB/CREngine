@@ -1,5 +1,7 @@
-﻿using System;
+﻿using CREditor.GameProject;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,6 +26,7 @@ namespace CREditor
         {
             InitializeComponent();
             Loaded += OnMainWindowLoaded;
+            Closing += OnMainWindowClosing;
         }
 
         private void OnMainWindowLoaded(object sender, RoutedEventArgs e)
@@ -32,16 +35,23 @@ namespace CREditor
             OpenBrowserDialog();
         }
 
+        private void OnMainWindowClosing(object sender, CancelEventArgs e)
+        {
+            Closing -= OnMainWindowClosing;
+            Project.Current?.Unload();
+        }
+
         private void OpenBrowserDialog()
         {
             var projectBrowser = new GameProject.ProjectBrowserDialog();
-            if(projectBrowser.ShowDialog() == false)
+            if(projectBrowser.ShowDialog() == false || projectBrowser.DataContext == null)
             {
                 Application.Current.Shutdown();
             }
             else
             {
-
+                Project.Current?.Unload();
+                DataContext = projectBrowser.DataContext;
             }
         }
     }
