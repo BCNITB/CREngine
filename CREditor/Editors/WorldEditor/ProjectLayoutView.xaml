@@ -14,7 +14,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Button Content="Afegir Esnea" Width="96" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20,0,0,0" Focusable="False" Grid.Row="0" 
-                AutomationProperties.Name="Afegeix una noca escana"/>
+                AutomationProperties.Name="Afegeix una noca escana" Click="OnAddScene_Button_Click"/>
         <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="auto">
             <ItemsControl ItemsSource="{Binding Scenes}">
                 <ItemsControl.ItemsPanel>

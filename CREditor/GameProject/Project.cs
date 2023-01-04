@@ -45,11 +45,23 @@ namespace CREditor.GameProject
 
         public static Project Current => Application.Current.MainWindow.DataContext as Project;
 
+        public void AddScene(string sceneName)
+        {
+            Debug.Assert(!string.IsNullOrEmpty(sceneName.Trim()));
+            _scenes.Add(new Scene(this, sceneName));
+        }
+
+        public void RemoveScene(Scene scene)
+        {
+            Debug.Assert(_scenes.Contains(scene));
+            _scenes.Remove(scene);
+        }
+
         public static UndoRedo UndoRedo { get; } = new UndoRedo();
 
-        public ICommand AddScene { get; private set; }
+        //public ICommand AddScene { get; private set; }
 
-        public ICommand RemoveScene { get; private set; }
+        //public ICommand RemoveScene { get; private set; }
 
         private void AddSceneInternal(string sceneName)
         {
