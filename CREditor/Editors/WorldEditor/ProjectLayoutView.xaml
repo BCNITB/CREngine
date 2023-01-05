@@ -29,8 +29,8 @@
                                 <Grid>
                                     <StackPanel Orientation="Horizontal">
                                         <TextBlock Text="{Binding Name}"/>
-                                        <Button Content="Desfer" Command="{Binding DataContext.RemoveScene, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                                CommandParameter="{Binding}" Margin="20,0" Focusable="False"/>
+                                        <Button Content="Eliminar" Command="{Binding DataContext.RemoveScene, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                CommandParameter="{Binding}" Margin="20,0" Focusable="False" AutomationProperties.Name="Eliminar l'escena atual"/>
                                     </StackPanel>
                                     
                                 </Grid>

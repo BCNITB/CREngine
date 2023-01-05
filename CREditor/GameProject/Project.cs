@@ -17,7 +17,7 @@ namespace CREditor.GameProject
     {
         public static string Extension { get; } = ".cre";
         [DataMember]
-        public string Name { get; private set; } = "New Project";
+        public string Name { get; private set; } = "Nou Projecte";
         [DataMember]
         public string Path { get; private set; }
 
@@ -97,7 +97,7 @@ namespace CREditor.GameProject
 
             AddScene = new RelayCommand<object>(x =>
             {
-                AddSceneInternal($"Nova Escena (_scenes.Count)");
+                AddSceneInternal($"Nova Escena {_scenes.Count}");
                 var newScene = _scenes.Last();
                 var sceneIndex = _scenes.Count - 1;
 
