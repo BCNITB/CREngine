@@ -31,11 +31,21 @@
                                         <TextBlock Text="{Binding Name}"/>
                                         <Button Content="Eliminar" Command="{Binding DataContext.RemoveSceneCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
                                                 CommandParameter="{Binding}" Margin="20,0" Focusable="False" AutomationProperties.Name="Eliminar l'escena atual"/>
+                                        <Button Content="+" IsEnabled="{Binding IsActive}" Click="OnAddGemeEntity_Button_Click" 
+                                                AutomationProperties.Name="Afegir un Game Entity"/>
                                     </StackPanel>
-                                    
                                 </Grid>
                             </Expander.Header>
-                            <Border Background="Blue" Height="100"/>
+                            <ListBox ItemsSource="{Binding GameEntities}" IsEnabled="{Binding IsActive}" SelectionMode="Extended" SelectionChanged="OnGameEntities_ListBox_SelectionChanged">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding Name}"/>
+                                            <Button Content="Eliminar" Command="{Binding ParentScene.RemoveGameEntityCommand}" CommandParameter="{Binding}" AutomationProperties.Name="Eliminar el Game Entity"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
                         </Expander>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>

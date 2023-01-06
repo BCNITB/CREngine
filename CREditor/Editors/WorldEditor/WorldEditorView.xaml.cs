@@ -1,5 +1,7 @@
-﻿using System;
+﻿using CREditor.GameProject;
+using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -28,6 +30,7 @@ namespace CREditor.Editors
         {
             Loaded -= OnWorldEditorViewLoaded;
             Focus();
+            ((INotifyCollectionChanged)Project.UndoRedo.UndoList).CollectionChanged += (s, e) => Focus();
         }
     }
 }
