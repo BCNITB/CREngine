@@ -204,4 +204,3 @@ namespace CREditor.GameProject
         }
     }
 }
-// https://es.stackoverflow.com/questions/69134/gestionar-comandos-de-teclas-desde-c-y-wpf

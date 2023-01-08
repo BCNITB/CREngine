@@ -108,5 +108,3 @@ namespace CREditor.GameProject
         }
     }
 }
-
-//https://www.youtube.com/watch?v=X3zJKaYu3v0&list=PLU2nPsAdxKWQYxkmQ3TdbLsyc1l2j25XM&index=7
