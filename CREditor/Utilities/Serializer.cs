@@ -20,7 +20,8 @@ namespace CREditor.Utilities
             catch(Exception ex)
             {
                 Debug.WriteLine(ex.Message);
-                // TODO: log error
+                Logger.Log(MessageType.Error, "Failed to deserialize {instance} to {path}");
+                throw;
             }
         }
 
@@ -37,9 +38,9 @@ namespace CREditor.Utilities
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message);
-                // TODO: log error
+                Logger.Log(MessageType.Error, "Failed to deserialize {path}");
 
-                return default(T);
+                throw;
             }
         }
     }

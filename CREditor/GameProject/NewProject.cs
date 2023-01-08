@@ -169,9 +169,8 @@ namespace CREditor.GameProject
             catch(Exception ex)
             {
                 Debug.WriteLine(ex.Message);
-                // TODO: log error
-
-                return string.Empty;
+                Logger.Log(MessageType.Error, "Failed to create {ProjectName}");
+                throw;
             }
         }
 
@@ -199,10 +198,10 @@ namespace CREditor.GameProject
             catch(Exception ex)
             {
                 Debug.WriteLine(ex.Message);
-                //TODO: log error
+                Logger.Log(MessageType.Error, "Failed to read project templates");
+                throw;
             }
         }
     }
 }
-// https://www.youtube.com/watch?v=JkzkayZ6_o0&list=PLU2nPsAdxKWQYxkmQ3TdbLsyc1l2j25XM&index=5
 // https://es.stackoverflow.com/questions/69134/gestionar-comandos-de-teclas-desde-c-y-wpf
