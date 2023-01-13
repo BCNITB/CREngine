@@ -7,7 +7,7 @@ using System.Text;
 namespace CREditor.Components
 {
     [DataContract]
-    public class Transform : Component
+    class Transform : Component
     {
         private Vector3 _position;
         [DataMember]

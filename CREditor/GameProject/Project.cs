@@ -13,7 +13,7 @@ using System.Windows.Input;
 namespace CREditor.GameProject
 {
     [DataContract(Name = "Game")]
-    public class Project : ViewModelBase
+    class Project : ViewModelBase
     {
         public static string Extension { get; } = ".cre";
         [DataMember]
