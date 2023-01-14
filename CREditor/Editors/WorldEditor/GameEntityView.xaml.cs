@@ -50,6 +50,17 @@ namespace CREditor.Editors
             });
         }
 
+        private Action GetIsEnabledAction()
+        {
+            var vm = DataContext as MSEntity;
+            var selection = vm.SelectedEntities.Select(entity => (entity, entity.IsEnabled)).ToList();
+            return new Action(() =>
+            {
+                selection.ForEach(item => item.entity.IsEnabled = item.IsEnabled);
+                (DataContext as MSEntity).Refresh();
+            });
+        }
+
         private void OnName_TextBox_GotKeyboardFocus(object sender, KeyboardEventArgs e)
         {
             _undoAction = GetRenameAction();
@@ -66,6 +77,16 @@ namespace CREditor.Editors
             }
 
             _undoAction = null;
+        }
+
+        private void OnIsEnable_CheckBox_Click(object sender, RoutedEventArgs e)
+        {
+            var undoAction = GetIsEnabledAction();
+            var vm = DataContext as MSEntity;
+            vm.IsEnabled = (sender as CheckBox).IsChecked = true;
+            var redoAction = GetIsEnabledAction();
+            Project.UndoRedo.Add(new UndoRedoAction(undoAction, redoAction,
+                vm.IsEnabled == true ? "Enable game entity" : "Disable game entity"));
         }
     }
 }
